@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Jugeo_LoveLetter_Alba_Elena"
         tools:targetApi="31">
         <activity
+            android:name=".Juego"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
