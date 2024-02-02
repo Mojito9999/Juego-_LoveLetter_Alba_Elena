@@ -599,4 +599,6 @@ public class Juego extends AppCompatActivity {
 
     }
 
+    public static class Carta {
+    }
 }
