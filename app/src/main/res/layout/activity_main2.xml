@@ -17,7 +17,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <ImageView
@@ -25,25 +26,26 @@
             android:layout_width="wrap_content"
             android:layout_height="166dp"
             android:layout_gravity="center"
-            android:layout_marginRight="70dp"
-            android:src="@tools:sample/avatars" />
+            android:layout_marginRight="80dp"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/baron" />
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="wrap_content"
             android:layout_height="166dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="70dp"
-            android:src="@tools:sample/avatars" />
+            android:layout_marginLeft="80dp"
+            app:srcCompat="@drawable/baron" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="167dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="-70dp"
             android:layout_marginTop="-167dp"
-            android:src="@tools:sample/avatars" />
+            android:layout_marginRight="80dp"
+            app:srcCompat="@drawable/baron" />
 
         <ImageView
             android:id="@+id/imageView8"
@@ -51,18 +53,18 @@
             android:layout_height="166dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:layout_marginRight="70dp"
-            android:src="@tools:sample/avatars" />
+            android:layout_marginRight="80dp"
+            app:srcCompat="@drawable/baron" />
 
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="166dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="-165dp"
             android:layout_marginBottom="70dp"
-            android:src="@tools:sample/avatars" />
+            app:srcCompat="@drawable/baron" />
 
         <ImageView
             android:id="@+id/imageView10"

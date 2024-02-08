@@ -23,6 +23,9 @@
         android:theme="@style/Theme.Jugeo_LoveLetter_Alba_Elena"
         tools:targetApi="31">
         <activity
+            android:name=".SeleccionCarta"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
