@@ -1,6 +1,8 @@
 package com.example.jugeo_loveletter_alba_elena;
 
-/*public class Mazo {
+import java.util.ArrayList;
+
+public abstract class Mazo {
     protected ArrayList<Carta> cartas;
 
     public ArrayList<Carta> getCartas() {
@@ -10,4 +12,4 @@ package com.example.jugeo_loveletter_alba_elena;
     public void setCartas(ArrayList<Carta> cartas) {
         this.cartas = cartas;
     }
-}*/
+}

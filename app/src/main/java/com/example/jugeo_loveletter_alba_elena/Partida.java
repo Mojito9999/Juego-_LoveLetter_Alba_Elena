@@ -1,8 +1,8 @@
 package com.example.jugeo_loveletter_alba_elena;
 
-/*public class Partida {
+public class Partida {
 
-     Partida es la clase donde tenemos lo del anterior controlador
+     // Partida es la clase donde tenemos lo del anterior controlador
 
     private boolean esFin;
     private boolean esEmpiezaBot;
@@ -100,4 +100,4 @@ package com.example.jugeo_loveletter_alba_elena;
         return doncella;
 
     }
-}*/
+}

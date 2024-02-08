@@ -19,7 +19,6 @@ public class Juego extends AppCompatActivity {
         this.vista.btnRetroalimentacion.addActionListener(this);
         this.vista.btnMano1.addActionListener(this);
         this.vista.btnMano2.addActionListener(this);
-        this.vista.tglbtnCambiarVersion.addActionListener(this);
 
         // inicializacion
         this.partida = new Partida();
@@ -37,18 +36,6 @@ public class Juego extends AppCompatActivity {
         try {
 
             // PANEL INICIO
-            // version
-            if (e.getSource() == vista.tglbtnCambiarVersion) {
-
-                if (vista.tglbtnCambiarVersion.getText().equals("Clásica")) {
-                    vista.tglbtnCambiarVersion.setText("EFA");
-
-                } else {
-                    vista.tglbtnCambiarVersion.setText("Clásica");
-
-                }
-
-            }
 
             if (e.getSource() == vista.btnAceptarInicio) {
                 // musica= new Musica("resources/sonidos/perder.mp3");

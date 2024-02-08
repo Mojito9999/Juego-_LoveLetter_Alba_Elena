@@ -1,21 +1,18 @@
 package com.example.jugeo_loveletter_alba_elena;
 
-/*public class Robo {
+import java.util.ArrayList;
+
+public class Robo extends Mazo {
     private boolean esVacio;
     private boolean esEFA;
 
     // tenemos que pasar si o si por parametros la inicializacion, si lo seteamos se
     // nos pasarian las cartas de las dos versiones al mazo
-    public Robo(boolean esEFA) {
+    public Robo() {
         super();
         this.esVacio = true;
-        this.esEFA = esEFA;
-
-        if (esEFA) {
-            crearMazoCartasInicioPartidaEFA();
-        } else {
             crearMazoCartasInicioPartidaNormal();
-        }
+
 
     }
 
@@ -39,14 +36,14 @@ package com.example.jugeo_loveletter_alba_elena;
         this.cartas = new ArrayList<>();
 
         try {
-            Carta princesa = new Carta(1, "Princesa", 9, "resources/cartas/princesa.jpg");
-            Carta condesa = new Carta(1, "Condesa", 8, "resources/cartas/condesa.jpg");
-            Carta rey = new Carta(1, "Rey", 7, "resources/cartas/rey.jpg");
-            Carta principe = new Carta(2, "Principe", 5, "resources/cartas/principe.jpg");
-            Carta doncella = new Carta(2, "Doncella", 4, "resources/cartas/doncella.jpg");
-            Carta baron = new Carta(2, "Baron", 3, "resources/cartas/baron.jpg");
-            Carta sacerdote = new Carta(2, "Sacerdote", 2, "resources/cartas/sacerdote.jpg");
-            Carta guardia = new Carta(5, "Guardia", 1, "resources/cartas/guardia.jpg");
+            Carta princesa = new Carta(1, "Princesa", 9, "@drawable/princesa");
+            Carta condesa = new Carta(1, "Condesa", 8, "@drawable/condesa");
+            Carta rey = new Carta(1, "Rey", 7, "@drawable/rey");
+            Carta principe = new Carta(2, "Principe", 5, "@drawable/principe");
+            Carta doncella = new Carta(2, "Doncella", 4, "@drawable/doncella");
+            Carta baron = new Carta(2, "Baron", 3, "@drawable/baron");
+            Carta sacerdote = new Carta(2, "Sacerdote", 2, "@drawable/sacerdote");
+            Carta guardia = new Carta(5, "Guardia", 1, "@drawable/guardia");
 
             // CREACION DEL MAZO CON TODAS LAS CARTA
             // Princesa
@@ -200,4 +197,4 @@ package com.example.jugeo_loveletter_alba_elena;
         return esVacio;
 
     }
-}*/
+}
