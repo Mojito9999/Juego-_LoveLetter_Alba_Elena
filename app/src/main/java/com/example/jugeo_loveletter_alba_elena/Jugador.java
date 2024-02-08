@@ -1,6 +1,6 @@
 package com.example.jugeo_loveletter_alba_elena;
 
-public class Jugador {
+/*public class Jugador {
     private String nombre;
     private Carta mano;
     private Carta robo;
@@ -43,4 +43,4 @@ public class Jugador {
         this.perdedor = perdedor;
     }
 
-}
+}*/

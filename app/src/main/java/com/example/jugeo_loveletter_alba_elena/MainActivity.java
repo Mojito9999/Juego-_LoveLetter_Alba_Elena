@@ -79,4 +79,8 @@ public class MainActivity extends AppCompatActivity {
         Intent tomarFoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         launcher.launch(tomarFoto);
     }
+    public void siguiente(View view) {
+        Intent intent = new Intent(this,SeleccionCarta.class);
+        startActivity(intent);
+    }
 }

@@ -1,17 +1,21 @@
 <resources>
-     <string name="app_name">Jugeo_LoveLetter_Alba_Elena</string>
+    <string name="app_name">Jugeo_LoveLetter_Alba_Elena</string>
 
     <string-array name="cartas">
 
         <item>Princesa</item>
 
+        <item>Condesa</item>
+
+        <item>Rey</item>
+
+        <item>Principe</item>
+
+        <item>Doncella</item>
+
         <item>Baron</item>
 
-        <item>Java</item>
-
-        <item>JavaScript</item>
-
-        <item>VisualBasic</item>
+        <item>Saccerdote</item>
 
     </string-array>
 

@@ -1,6 +1,6 @@
 package com.example.jugeo_loveletter_alba_elena;
 
-public class Mazo {
+/*public class Mazo {
     protected ArrayList<Carta> cartas;
 
     public ArrayList<Carta> getCartas() {
@@ -10,4 +10,4 @@ public class Mazo {
     public void setCartas(ArrayList<Carta> cartas) {
         this.cartas = cartas;
     }
-}
+}*/

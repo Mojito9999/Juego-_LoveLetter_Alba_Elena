@@ -1,6 +1,6 @@
 package com.example.jugeo_loveletter_alba_elena;
 
-public class Bot {
+/*public class Bot {
     private Carta mano;
     private Carta robo;
     private boolean perdedor;
@@ -34,4 +34,4 @@ public class Bot {
         this.perdedor = perdedor;
     }
 
-}
+}*/

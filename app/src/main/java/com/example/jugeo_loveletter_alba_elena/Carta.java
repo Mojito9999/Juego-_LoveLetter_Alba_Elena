@@ -1,7 +1,7 @@
 package com.example.jugeo_loveletter_alba_elena;
 
 
-public class Carta {
+/*public class Carta {
 
     private int cantidadCartas;
     private String tipoCarta;
@@ -64,5 +64,5 @@ public class Carta {
         this.rutaImagen = rutaImagen;
     }
 
-}
+}*/
 

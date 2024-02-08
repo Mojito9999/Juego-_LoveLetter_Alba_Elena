@@ -11,7 +11,7 @@ public class Juego extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
     }
-    public Controlador(Vista vista) {
+    /*public Controlador(Vista vista) {
         this.vista = vista;
         this.vista.btnAceptarInicio.addActionListener(this);
         this.vista.btnAceptarAdivinar.addActionListener(this);
@@ -600,5 +600,5 @@ public class Juego extends AppCompatActivity {
     }
 
     public static class Carta {
-    }
+    }*/
 }

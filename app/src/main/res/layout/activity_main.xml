@@ -8,10 +8,9 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageViewFondoCarta"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@tools:sample/avatars"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/fondo_carta" />
 
@@ -22,13 +21,13 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/imageViewFondoLogo"
             android:layout_width="345dp"
             android:layout_height="59dp"
-            android:src="@tools:sample/avatars"
             app:srcCompat="@drawable/love_letter" />
 
         <TextView
+            android:id="@+id/TextViewIntroduceNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -36,7 +35,7 @@
             android:textColor="#000000" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/editTextNombre"
             android:layout_width="131dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -60,11 +59,12 @@
             android:layout_height="200dp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/buttonAceptar"
             android:layout_width="119dp"
             android:layout_height="37dp"
             android:layout_gravity="center"
             android:backgroundTint="#00E3D7D7"
+            android:onClick="siguiente"
             android:text="Aceptar"
             android:textColor="#000000" />
     </LinearLayout>

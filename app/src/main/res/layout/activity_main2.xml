@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@tools:sample/avatars"
         app:srcCompat="@drawable/fondo_carta" />
 
     <LinearLayout
@@ -76,7 +75,7 @@
             app:srcCompat="@drawable/cera_bot" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewFraseInfo"
             android:layout_width="286dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
@@ -88,7 +87,7 @@
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonAceptarJugando"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

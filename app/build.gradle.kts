@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.example.jugeo_loveletter_alba_elena"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.jugeo_loveletter_alba_elena"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

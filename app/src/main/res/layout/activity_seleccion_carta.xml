@@ -30,7 +30,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView12"
+                android:id="@+id/imageViewFondoCartaRojo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -43,18 +43,36 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="255dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/charmonman_bold"
                     android:text="Selecciona una carta a adivinar:"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
+
 
                 <Spinner
                     android:id="@+id/spinnerCartas"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="51dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="-68dp"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/buttonAceptarSeleccionCarta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="-50dp"
+                    android:backgroundTint="#00E3D7D7"
+                    android:fontFamily="@font/charmonman_bold"
+                    android:text="Aceptar"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

@@ -1,6 +1,6 @@
 package com.example.jugeo_loveletter_alba_elena;
 
-public class Robo {
+/*public class Robo {
     private boolean esVacio;
     private boolean esEFA;
 
@@ -200,4 +200,4 @@ public class Robo {
         return esVacio;
 
     }
-}
+}*/
