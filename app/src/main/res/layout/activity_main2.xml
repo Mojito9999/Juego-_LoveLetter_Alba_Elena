@@ -53,17 +53,19 @@
             android:layout_marginRight="80dp"
             app:srcCompat="@drawable/baron" />
 
-        <ImageView
-            android:id="@+id/imageView8"
+
+        <Button
+            android:id="@+id/btnMano1"
             android:layout_width="wrap_content"
             android:layout_height="166dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:layout_marginRight="80dp"
-            app:srcCompat="@drawable/baron" />
+            android:background="@drawable/baron"
+            android:tint="@null" />
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/btnMano2"
             android:layout_width="wrap_content"
             android:layout_height="166dp"
             android:layout_gravity="center"

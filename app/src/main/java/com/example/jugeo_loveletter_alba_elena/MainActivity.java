@@ -97,15 +97,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void aceptarInicio(){
+   /* public void aceptarInicio() {
         // nombre jugador
-        jugador.setNombre(String.valueOf(this.textViewNombreJugador.getText()));
+       // jugador.setNombre(String.valueOf(this.textViewNombreJugador.getText()));
 
-        this.ediTTextNombre.setText(jugador.getNombre());
+        //this.ediTTextNombre.setText(jugador.getNombre());
 
-        siguiente(view);
-
-        // empezamos la partida
+        //siguiente(view);
+    }
+     // empezamos la partida
         partida.empezarPartida(jugador, bot, robo);
         vista.btnMano1.setIcon(new ImageIcon(jugador.getMano().getRutaImagen()));
         // comprobamos quien empieza y fijamos el primer robo del jugador
@@ -316,5 +316,5 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }
