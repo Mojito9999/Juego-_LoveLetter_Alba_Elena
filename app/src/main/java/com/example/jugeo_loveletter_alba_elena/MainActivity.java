@@ -18,6 +18,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewNombreJugador;
     EditText ediTTextNombre;
     View view;
-    Button btnMano1;
+    ImageButton btnMano1;
     private final int REQUEST_PERMISSIONS = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imagen = findViewById(R.id.imageView);
-
+        btnMano1=findViewById(R.id.btnMano1);
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-   /* public void aceptarInicio() {
+    public void aceptarInicio() {
         // nombre jugador
        // jugador.setNombre(String.valueOf(this.textViewNombreJugador.getText()));
 
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             // Juega el bot
             jugarBot();
         }
-    }
+
     public void jugarBot() {
 
         try {
@@ -319,5 +320,5 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-    }*/
+    }
 }

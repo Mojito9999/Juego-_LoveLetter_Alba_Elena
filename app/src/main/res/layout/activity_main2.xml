@@ -54,25 +54,24 @@
             app:srcCompat="@drawable/baron" />
 
 
-        <Button
+        <ImageButton
             android:id="@+id/btnMano1"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="166dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:layout_marginRight="80dp"
-            android:background="@drawable/baron"
-            android:tint="@null" />
+            android:background="@drawable/baron" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnMano2"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="166dp"
             android:layout_gravity="center"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="-165dp"
             android:layout_marginBottom="70dp"
-            app:srcCompat="@drawable/baron" />
+            android:background="@drawable/baron" />
 
         <ImageView
             android:id="@+id/imageView10"

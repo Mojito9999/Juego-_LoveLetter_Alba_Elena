@@ -13,7 +13,6 @@ public class Robo extends Mazo {
         this.esVacio = true;
             crearMazoCartasInicioPartidaNormal();
 
-
     }
 
     public boolean isEsVacio() {
@@ -44,63 +43,6 @@ public class Robo extends Mazo {
             Carta baron = new Carta(2, "Baron", 3, "@drawable/baron");
             Carta sacerdote = new Carta(2, "Sacerdote", 2, "@drawable/sacerdote");
             Carta guardia = new Carta(5, "Guardia", 1, "@drawable/guardia");
-
-            // CREACION DEL MAZO CON TODAS LAS CARTA
-            // Princesa
-
-            cartas.add(princesa);
-
-            // Condesa
-
-            cartas.add(condesa);
-
-            // Rey
-
-            cartas.add(rey);
-
-            // Principe
-            for (int i = 0; i < principe.getCantidadCartas(); i++) {
-                cartas.add(principe);
-            }
-            // Docella
-            for (int i = 0; i < doncella.getCantidadCartas(); i++) {
-                cartas.add(doncella);
-            }
-            // Baron
-            for (int i = 0; i < baron.getCantidadCartas(); i++) {
-                cartas.add(baron);
-            }
-            // Sacerdote
-            for (int i = 0; i < sacerdote.getCantidadCartas(); i++) {
-                cartas.add(sacerdote);
-            }
-            // Guardian
-            for (int i = 0; i < guardia.getCantidadCartas(); i++) {
-                cartas.add(guardia);
-            }
-
-            // Barajar cartas
-            this.cartas = barajarMazo(cartas);
-
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-
-    }
-
-    private void crearMazoCartasInicioPartidaEFA() {
-        this.cartas = new ArrayList<>();
-
-        try {
-            Carta princesa = new Carta(1, "Princesa", 9, "resources/cartas_efa/princesa.jpg");
-            Carta condesa = new Carta(1, "Condesa", 8, "resources/cartas_efa/condesa.jpg");
-            Carta rey = new Carta(1, "Rey", 7, "resources/cartas_efa/el_king.jpg");
-            Carta principe = new Carta(2, "Principe", 5, "resources/cartas_efa/principe.jpg");
-            Carta doncella = new Carta(2, "Doncella", 4, "resources/cartas_efa/doncella_en_apuros.jpg");
-            Carta baron = new Carta(2, "Baron", 3, "resources/cartas_efa/baron.jpg");
-            Carta sacerdote = new Carta(2, "Sacerdote", 2, "resources/cartas_efa/sacerdote.jpg");
-            Carta guardia = new Carta(5, "Guardia", 1, "resources/cartas_efa/guardias.jpg");
 
             // CREACION DEL MAZO CON TODAS LAS CARTA
             // Princesa
