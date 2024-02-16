@@ -8,14 +8,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,7 +31,7 @@ import java.util.ArrayList;
 public class MainActivity2 extends AppCompatActivity {
     private ActivityResultLauncher<Intent> launcher;
     ImageView imagen;
-    Juego juego = new Juego();
+
     Jugador jugador = new Jugador();
     Bot bot = new Bot();
     Robo robo = new Robo();
@@ -38,12 +42,53 @@ public class MainActivity2 extends AppCompatActivity {
     EditText ediTTextNombre;
     View view;
     ImageButton btnMano1,btnMano2;
+    TextView lblRetroBot;
+    Button btnRetroalimentacion;
+    ImageView imageViewDescarte;
     private final int REQUEST_PERMISSIONS = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         btnMano1=findViewById(R.id.btnMano1);
+        btnMano2=findViewById(R.id.btnMano2);
+        // Obtener el TextView lblRetroBot desde el layout
+        lblRetroBot = findViewById(R.id.lblRetroBot);
+
+        imageViewDescarte= findViewById(R.id.imageViewDescarte);
+        btnRetroalimentacion = findViewById(R.id.btnRetroalimentacion);
+        // Otro código...
+
+        // Recibir datos del Intent
+       /*Intent intent = getIntent();
+        if (intent != null) {
+            String selectedCarta = intent.getStringExtra("selectedCarta");
+
+            // Actualizar el TextView lblRetroBot según el valor recibido
+            if (selectedCarta.equals(bot.getMano().getTipoCarta())) {
+                lblRetroBot.setText("Has adivinado la carta del bot");
+            } else {
+                lblRetroBot.setText("No has adivinado la carta del bot");
+            }
+        }*/
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("selectedCarta")) {
+            String selectedCarta = intent.getStringExtra("selectedCarta");
+            if (selectedCarta != null) {
+                if (selectedCarta.equals(bot.getMano().getTipoCarta())) {
+                    lblRetroBot.setText("Has adivinado la carta del bot");
+                } else {
+                    lblRetroBot.setText("No has adivinado la carta del bot");
+                }
+            } else {
+                // Manejar el caso en que selectedCarta sea nulo
+                lblRetroBot.setText("No se proporcionó una carta válida");
+            }
+        } else {
+            // Manejar el caso en que no haya un extra con la clave "selectedCarta"
+            lblRetroBot.setText("No se proporcionó una carta");
+        }
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
@@ -78,16 +123,51 @@ public class MainActivity2 extends AppCompatActivity {
         partida.empezarPartida(jugador, bot, robo);
 
        // btnMano1((jugador.getMano().getRutaImagen()));/////////////////////////////////////////////////////////////////////////////////////////////////////
-        btnMano1.setImageDrawable((jugador.getMano().getRutaImagen());
+        btnMano1.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
 
         // comprobamos quien empieza y fijamos el primer robo del jugador
         if (!partida.isEsEmpiezaBot()) {
-            vista.btnMano2.setIcon(new ImageIcon(jugador.getRobo().getRutaImagen()));
+            btnMano2.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
         } else {
             btnMano1.setEnabled(false);
             btnMano2.setEnabled(false);
             // Juega el bot
             jugarBot();
+        }
+        procesarTurno();
+
+    }
+    private void procesarTurno() {
+        // Cambiar el turno
+        if (jugador.getRobo() == null && !partida.isEsFin()) {
+            btnMano1.setEnabled(false);
+            btnMano2.setEnabled(false);
+            jugarBot();
+        } else if (bot.getRobo() == null && !partida.isEsFin()) {
+            btnMano1.setEnabled(true);
+            btnMano2.setEnabled(true);
+            //vista.lblCartaBot.setIcon(new ImageIcon("resources/trasera.jpg"));
+            btnMano2.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+        }
+
+        // Comprobar el final de la partida y manejar según sea necesario
+        if (partida.isEsFin()) {
+           // resolverGanador();
+            lblRetroBot.setText("La partida ha terminado, pulsa aceptar");
+        } else if (bot.isPerdedor() || jugador.isPerdedor() || robo.finMazoRobo()) {
+            partida.setEsFin(true);
+            lblRetroBot.setText("La partida ha terminado, pulsa aceptar");
+        }
+    }
+    public void aceptarFin(View view) {
+
+        try {
+            Log.d("MiApp", "Iniciando MainActivity2");  // Agrega esto
+            Intent intent = new Intent(this, HasGanado.class);
+            startActivity(intent);
+        } catch (Exception e) {
+            Log.e("MiApp", "Error en aceptarInicio", e);  // Agrega esto
+            e.printStackTrace();
         }
     }
 
@@ -110,12 +190,18 @@ public class MainActivity2 extends AppCompatActivity {
         Intent tomarFoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         launcher.launch(tomarFoto);
     }
-    public void siguiente(View view) {
-        Intent intent = new Intent(this,MainActivity2.class);
+
+    public void onClickBtnMano1(View view) {
+        // Crear un Intent para ir al nuevo layout con el ComboBox
+        Intent intent = new Intent(MainActivity2.this, SeleccionCarta.class);
         startActivity(intent);
     }
 
-
+    public void onClickBtnMano2(View view) {
+        // Crear un Intent para ir al nuevo layout con el ComboBox
+        Intent intent = new Intent(MainActivity2.this, SeleccionCarta.class);
+        startActivity(intent);
+    }
     public void jugarBot() {
 
         try {
@@ -152,7 +238,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     }
     public void resolverBot(Carta carta) {
-        vista.btnRetroalimentacion.setEnabled(true);
+        btnRetroalimentacion.setEnabled(true);
 
         // comportamiento provocado cuando el jugador baja una carta de la mano a
         // descarte
@@ -171,7 +257,7 @@ public class MainActivity2 extends AppCompatActivity {
                     if (!partida.hayDoncellaDescartes(descarte)) {
                         if (jugador.getMano().isEsMarcada100() && !jugador.getMano().getTipoCarta().equals("Guardia")) {
                             jugador.setPerdedor(true);
-                            this.vista.lblRetroBot.setText("El Bot te ha adivinado la carta");
+                           lblRetroBot.setText("El Bot te ha adivinado la carta");
 
                         } else {
                             ArrayList<Carta> adivinar = new ArrayList<>();
@@ -189,7 +275,7 @@ public class MainActivity2 extends AppCompatActivity {
                             }
 
                             int random = (int) (0 + Math.random() * adivinaGuardia.size());
-                            this.vista.lblRetroBot.setText("El Bot ha dicho " + adivinaGuardia.get(random).getTipoCarta());
+                            lblRetroBot.setText("El Bot ha dicho " + adivinaGuardia.get(random).getTipoCarta());
                             if (adivinaGuardia.get(random).getTipoCarta().equals(jugador.getMano().getTipoCarta())) {
                                 jugador.setPerdedor(true);
                                 // System.out.println("Gana el bot");
@@ -203,7 +289,7 @@ public class MainActivity2 extends AppCompatActivity {
                     // al bajar el sacerdote miras la carta del jugador contrario
                     // marcar la carta del contrario
                     if (!partida.hayDoncellaDescartes(descarte)) {
-                        this.vista.lblRetroBot.setText("El Bot juega Sacerdote y ve tu carta");
+                        lblRetroBot.setText("El Bot juega Sacerdote y ve tu carta");
                         jugador.getMano().setEsMarcada100(true);
                     }
                     // System.out.println("BOT JUEGA SACERDOTE");
@@ -222,22 +308,22 @@ public class MainActivity2 extends AppCompatActivity {
 
                         if (jugador.getMano().getNumCarta() > bot.getMano().getNumCarta()) {
                             bot.setPerdedor(true);
-                            vista.lblRetroBot.setText("Bot tiene " + bot.getMano().getTipoCarta() + ". Pierde");
+                            lblRetroBot.setText("Bot tiene " + bot.getMano().getTipoCarta() + ". Pierde");
 
                             // System.out.println("Ha ganado el jugador");
                         } else if (bot.getMano().getNumCarta() > jugador.getMano().getNumCarta()) {
                             jugador.setPerdedor(true);
-                            vista.lblRetroBot.setText("Bot tiene " + bot.getMano().getTipoCarta() + ". Gana");
+                            lblRetroBot.setText("Bot tiene " + bot.getMano().getTipoCarta() + ". Gana");
                             // System.out.println("Ha ganado el bot");
                         } else {
-                            vista.lblRetroBot.setText("La carta del Bot es igual que tu carta");
+                            lblRetroBot.setText("La carta del Bot es igual que tu carta");
                             // Si es empate no pasa nada
                         }
                     }
                     // System.out.println("BOT JUEGA BARON");
                     break;
                 case "Doncella":// 4
-                    vista.lblRetroBot.setText("El Bot se protege con una doncella");
+                    lblRetroBot.setText("El Bot se protege con una doncella");
                     // System.out.println("BOT JUEGA DONCELLA");
                     break;
                 case "Principe":// 5
@@ -245,8 +331,10 @@ public class MainActivity2 extends AppCompatActivity {
                     // descartes y roba una carta del mazo
                     if (!partida.hayDoncellaDescartes(descarte)) {
 
-                        vista.lblRetroBot.setText("El Bot juega al principe y descarta tu carta");
-                        vista.lblDescartes.setIcon(new ImageIcon(jugador.getMano().getRutaImagen()));
+                        lblRetroBot.setText("El Bot juega al principe y descarta tu carta");
+                        btnMano1.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+                        imageViewDescarte.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+
                         if (jugador.getMano().getTipoCarta().equals("Princesa")) {
                             descarte.getCartas().add(jugador.getMano());
                             jugador.setPerdedor(true);
@@ -255,14 +343,15 @@ public class MainActivity2 extends AppCompatActivity {
                         jugador.setMano(null);
                         if (!robo.finMazoRobo()) {
                             jugador.setMano(robo.robarCarta());
-                            vista.btnMano1.setIcon(new ImageIcon(jugador.getMano().getRutaImagen()));
+                            btnMano1.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
                         } else {// COMPROBAR QUIEN TIENE LA CARTA MAS ALTA
                             partida.setEsFin(true);
                         }
                     } else {
 
-                        vista.lblRetroBot.setText("El Bot juega al principe y descarta su carta");
-                        vista.lblDescartes.setIcon(new ImageIcon(bot.getMano().getRutaImagen()));
+                        lblRetroBot.setText("El Bot juega al principe y descarta su carta");
+                        imageViewDescarte.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+
                         if (bot.getMano().getTipoCarta().equals("Princesa")) {
                             descarte.getCartas().add(bot.getMano());
                             bot.setPerdedor(true);
@@ -291,16 +380,16 @@ public class MainActivity2 extends AppCompatActivity {
                         }
 
                         jugador.getMano().setEsMarcada100(true);
-                        vista.btnMano1.setIcon(new ImageIcon(jugador.getMano().getRutaImagen()));
+                        btnMano1.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
 
                         bot.setMano(cartaAux);
 
-                        vista.lblRetroBot.setText("Intercambías las cartas");
+                        lblRetroBot.setText("Intercambías las cartas");
                     }
                     // System.out.println("BOT JUEGA REY");
                     break;
                 case "Condesa":// 8
-                    vista.lblRetroBot.setText("El Bot juega a la Condesa");
+                    lblRetroBot.setText("El Bot juega a la Condesa");
                     // System.out.println("BOT JUEGA CONDESA");
                     break;
                 // condesa no tiene comportamiento
@@ -308,11 +397,15 @@ public class MainActivity2 extends AppCompatActivity {
 
             // annadimos la carta al descarte
             descarte.getCartas().add(carta);
-            vista.lblDescartes.setIcon(new ImageIcon(carta.getRutaImagen()));
+            imageViewDescarte.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
 
     }
+
+
+
 }

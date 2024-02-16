@@ -37,7 +37,7 @@
             app:srcCompat="@drawable/baron" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imageViewDescarte"
             android:layout_width="wrap_content"
             android:layout_height="166dp"
             android:layout_gravity="center"
@@ -51,7 +51,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="-167dp"
             android:layout_marginRight="80dp"
-            app:srcCompat="@drawable/baron" />
+            app:srcCompat="@drawable/trasera" />
 
 
         <ImageButton
@@ -61,7 +61,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:layout_marginRight="80dp"
-            android:background="@drawable/baron" />
+            android:background="@drawable/baron"
+            android:onClick="onClickBtnMano1" />
 
         <ImageButton
             android:id="@+id/btnMano2"
@@ -71,7 +72,8 @@
             android:layout_marginLeft="80dp"
             android:layout_marginTop="-165dp"
             android:layout_marginBottom="70dp"
-            android:background="@drawable/baron" />
+            android:background="@drawable/baron"
+            android:onClick="onClickBtnMano2" />
 
         <ImageView
             android:id="@+id/imageView10"
@@ -83,7 +85,7 @@
             app:srcCompat="@drawable/cera_bot" />
 
         <TextView
-            android:id="@+id/textViewFraseInfo"
+            android:id="@+id/lblRetroBot"
             android:layout_width="286dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
@@ -95,12 +97,13 @@
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/buttonAceptarJugando"
+            android:id="@+id/btnRetroalimentacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="#00E3D7D7"
             android:fontFamily="@font/charmonman_bold"
+            android:onClick="aceptarFin"
             android:text="Aceptar"
             android:textColor="#000000"
             android:textSize="16sp" />

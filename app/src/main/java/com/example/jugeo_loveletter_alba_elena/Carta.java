@@ -3,12 +3,12 @@ package com.example.jugeo_loveletter_alba_elena;
 
 public class Carta {
 
-    private int cantidadCartas;
-    private String tipoCarta;
-    private int numCarta;
-    private boolean esMarcada100;
+    public int cantidadCartas;
+    public String tipoCarta;
+    public int numCarta;
+    public boolean esMarcada100;
 
-    private String rutaImagen;
+    public String rutaImagen;
 
     public Carta() {
 
