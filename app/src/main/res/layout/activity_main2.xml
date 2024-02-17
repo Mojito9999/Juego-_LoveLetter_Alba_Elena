@@ -27,86 +27,118 @@
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="166dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="80dp"
-            android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/baron" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageViewDescarte"
-            android:layout_width="wrap_content"
-            android:layout_height="166dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="80dp"
-            app:srcCompat="@drawable/baron" />
+            <ImageView
+                android:id="@+id/lblCartaBot"
+                android:layout_width="140dp"
+                android:layout_height="166dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/baron" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="167dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="-167dp"
-            android:layout_marginRight="80dp"
-            app:srcCompat="@drawable/trasera" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="140dp"
+                android:layout_height="167dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/trasera" />
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/imageViewDescarte"
+                android:layout_width="140dp"
+                android:layout_height="166dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/baron" />
+        </LinearLayout>
 
 
-        <ImageButton
-            android:id="@+id/btnMano1"
-            android:layout_width="140dp"
-            android:layout_height="166dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="80dp"
-            android:background="@drawable/baron"
-            android:onClick="onClickBtnMano1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/btnMano2"
-            android:layout_width="140dp"
-            android:layout_height="166dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="-165dp"
-            android:layout_marginBottom="70dp"
-            android:background="@drawable/baron"
-            android:onClick="onClickBtnMano2" />
+            <ImageButton
+                android:id="@+id/btnMano2"
+                android:layout_width="140dp"
+                android:layout_height="166dp"
+                android:layout_gravity="center"
+                android:background="@drawable/baron"
+                android:onClick="onClickBtnMano2"
+                android:scaleType="fitXY" />
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+            <ImageButton
+                android:id="@+id/btnMano1"
+                android:layout_width="140dp"
+                android:layout_height="166dp"
+                android:layout_gravity="center"
+                android:background="@drawable/baron"
+                android:onClick="onClickBtnMano1"
+                android:scaleType="fitXY" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="57dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="-50dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/cera_bot" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="57dp"
+                android:layout_height="60dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/cera_bot" />
 
-        <TextView
-            android:id="@+id/lblRetroBot"
-            android:layout_width="286dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="-50dp"
-            android:fontFamily="@font/charmonman_bold"
-            android:text="BOT"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/lblRetroBot"
+                android:layout_width="286dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/charmonman_bold"
+                android:text="BOT"
+                android:textColor="#000000"
+                android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/btnRetroalimentacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="#00E3D7D7"
-            android:fontFamily="@font/charmonman_bold"
-            android:onClick="aceptarFin"
-            android:text="Aceptar"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnRetroalimentacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_horizontal"
+                android:backgroundTint="#00E3D7D7"
+                android:fontFamily="@font/charmonman_bold"
+                android:onClick="procesarTurno"
+                android:text="Aceptar"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
 
     </LinearLayout>
 

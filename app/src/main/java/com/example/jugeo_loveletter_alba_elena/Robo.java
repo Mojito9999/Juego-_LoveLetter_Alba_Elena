@@ -38,7 +38,7 @@ public class Robo extends Mazo {
             Carta princesa = new Carta(1, "Princesa", 9, "@drawable/princesa");
             Carta condesa = new Carta(1, "Condesa", 8, "@drawable/condesa");
             Carta rey = new Carta(1, "Rey", 7, "@drawable/rey");
-            Carta principe = new Carta(2, "Principe", 5, "@drawable/principe");
+            //Carta principe = new Carta(2, "Principe", 5, "@drawable/principe");
             Carta doncella = new Carta(2, "Doncella", 4, "@drawable/doncella");
             Carta baron = new Carta(2, "Baron", 3, "@drawable/baron");
             Carta sacerdote = new Carta(2, "Sacerdote", 2, "@drawable/sacerdote");
@@ -57,10 +57,10 @@ public class Robo extends Mazo {
 
             cartas.add(rey);
 
-            // Principe
+           /* // Principe
             for (int i = 0; i < principe.getCantidadCartas(); i++) {
                 cartas.add(principe);
-            }
+            }*/
             // Docella
             for (int i = 0; i < doncella.getCantidadCartas(); i++) {
                 cartas.add(doncella);

@@ -71,11 +71,11 @@ public class HasGanado extends AppCompatActivity {
         resolverGanador();
 
     }
-    public void playLocal(){
-        if(media==null){
-            media= MediaPlayer.create(this,R.raw.bob_esponja_tonos);
+    public void playLocal(int soundResourceId) {
+        if (media == null) {
+            media = MediaPlayer.create(this, soundResourceId);
         }
-        if(!media.isPlaying()){
+        if (!media.isPlaying()) {
             media.start();
         }
     }
@@ -93,7 +93,10 @@ public class HasGanado extends AppCompatActivity {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-
+    public static void resolverGanadorDesdeOtraActividad() {
+        HasGanado instancia = new HasGanado();
+        instancia.resolverGanador();
+    }
     public void resolverGanador() {
 
         try {
@@ -115,7 +118,7 @@ public class HasGanado extends AppCompatActivity {
                 //this.vista.panelGanador.setVisible(true);
                 lblGanador.setText("El Bot ha ganado");
                 // SONIDO
-                playLocal();
+                playLocal(R.raw.perder);
                 //Clip sonido = AudioSystem.getClip();
                 //sonido.open(AudioSystem.getAudioInputStream(new File("resources/sonidos/perder.wav")));
 
@@ -125,12 +128,12 @@ public class HasGanado extends AppCompatActivity {
                 //this.vista.panelGanador.setVisible(true);
                 lblGanador.setText("Has ganado la partida");
                 // SONIDO
-                playLocal();
+                playLocal(R.raw.ganar);
                 //Clip sonido = AudioSystem.getClip();
                 //sonido.open(AudioSystem.getAudioInputStream(new File("resources/sonidos/ganar.wav")));
                 //sonido.start();
             } else { // empate sonido
-                playLocal();
+                playLocal(R.raw.ganar);
                 //Clip sonido = AudioSystem.getClip();
                 //sonido.open(AudioSystem.getAudioInputStream(new File("resources/sonidos/ganar.wav")));
                 //sonido.start();

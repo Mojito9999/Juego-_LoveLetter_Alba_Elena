@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 public class MainActivity2 extends AppCompatActivity {
     private ActivityResultLauncher<Intent> launcher;
     ImageView imagen;
-
+    MediaPlayer media;
     Jugador jugador = new Jugador();
     Bot bot = new Bot();
     Robo robo = new Robo();
@@ -44,7 +45,7 @@ public class MainActivity2 extends AppCompatActivity {
     ImageButton btnMano1,btnMano2;
     TextView lblRetroBot;
     Button btnRetroalimentacion;
-    ImageView imageViewDescarte;
+    ImageView imageViewDescarte,lblCartaBot;
     private final int REQUEST_PERMISSIONS = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         imageViewDescarte= findViewById(R.id.imageViewDescarte);
         btnRetroalimentacion = findViewById(R.id.btnRetroalimentacion);
+
+        lblCartaBot=findViewById(R.id.lblCartaBot);
         // Otro código...
 
         // Recibir datos del Intent
@@ -89,6 +92,50 @@ public class MainActivity2 extends AppCompatActivity {
             // Manejar el caso en que no haya un extra con la clave "selectedCarta"
             lblRetroBot.setText("No se proporcionó una carta");
         }
+
+
+        // Accion del principe
+
+        /*int selectedCartaIndex = intent.getIntExtra("selectedCartaIndex", -1);
+            if (selectedCartaIndex == 0)  {
+                lblRetroBot.setText("El Bot ha descartado " + bot.getMano().getTipoCarta());
+                imageViewDescarte.setImageResource(getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()));
+                if (bot.getMano().getTipoCarta().equals("Princesa")) {
+                    descarte.getCartas().add(bot.getMano());
+                }
+                if (!robo.finMazoRobo()) {
+                    bot.setMano(robo.robarCarta());
+                } else {// COMPROBAR QUIEN TIENE LA CARTA MAS ALTA
+                    partida.setEsFin(true);
+                }
+
+            } else {
+                lblRetroBot.setText("Descartas tu carta");
+                imageViewDescarte.setImageResource(getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()));
+                if (jugador.getMano().getTipoCarta().equals("Princesa")) {
+                    descarte.getCartas().add(jugador.getMano());
+                }
+                if (!robo.finMazoRobo()) {
+                    jugador.setMano(robo.robarCarta());
+                } else {// COMPROBAR QUIEN TIENE LA CARTA MAS ALTA
+                    partida.setEsFin(true);
+                }
+            }
+            // Comprobamos si alguien ha descartado la princisa en tal caso la partida
+            // acaba
+            if (partida.hayPrincesaDescartes(descarte)) {
+                partida.setEsFin(true);
+                // si es el bot el que ha descartado, pierde el bot, sino el jugador
+                if (selectedCartaIndex == 0) {
+                    bot.setPerdedor(true);
+                    partida.setEsFin(true);
+                } else {
+                    jugador.setPerdedor(true);
+                    partida.setEsFin(true);
+                }*/
+
+
+
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
@@ -134,10 +181,10 @@ public class MainActivity2 extends AppCompatActivity {
             // Juega el bot
             jugarBot();
         }
-        procesarTurno();
+        //procesarTurno();
 
     }
-    private void procesarTurno() {
+    public void procesarTurno(View view) {
         // Cambiar el turno
         if (jugador.getRobo() == null && !partida.isEsFin()) {
             btnMano1.setEnabled(false);
@@ -152,14 +199,14 @@ public class MainActivity2 extends AppCompatActivity {
 
         // Comprobar el final de la partida y manejar según sea necesario
         if (partida.isEsFin()) {
-           // resolverGanador();
+            resolverGanador();
             lblRetroBot.setText("La partida ha terminado, pulsa aceptar");
         } else if (bot.isPerdedor() || jugador.isPerdedor() || robo.finMazoRobo()) {
             partida.setEsFin(true);
             lblRetroBot.setText("La partida ha terminado, pulsa aceptar");
         }
     }
-    public void aceptarFin(View view) {
+    /*public void aceptarFin(View view) {
 
         try {
             Log.d("MiApp", "Iniciando MainActivity2");  // Agrega esto
@@ -169,7 +216,7 @@ public class MainActivity2 extends AppCompatActivity {
             Log.e("MiApp", "Error en aceptarInicio", e);  // Agrega esto
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -191,7 +238,7 @@ public class MainActivity2 extends AppCompatActivity {
         launcher.launch(tomarFoto);
     }
 
-    public void onClickBtnMano1(View view) {
+    /*public void onClickBtnMano1(View view) {
         // Crear un Intent para ir al nuevo layout con el ComboBox
         Intent intent = new Intent(MainActivity2.this, SeleccionCarta.class);
         startActivity(intent);
@@ -201,6 +248,35 @@ public class MainActivity2 extends AppCompatActivity {
         // Crear un Intent para ir al nuevo layout con el ComboBox
         Intent intent = new Intent(MainActivity2.this, SeleccionCarta.class);
         startActivity(intent);
+    }*/
+    public void onClickBtnMano1(View view) {
+        // Actualizamos las imagenes al jugar la carta
+        imageViewDescarte.setImageResource(getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()));
+        btnMano1.setImageResource(getResources().getIdentifier(jugador.getRobo().getRutaImagen(), "drawable", getPackageName()));
+        btnMano2.setImageResource(getResources().getIdentifier("fondo_carta", "drawable", getPackageName()));
+        btnMano1.setEnabled(false);
+        btnMano2.setEnabled(false);
+
+        // FUNCIONALIDAD DE LA CARTA
+        resolverJugador(jugador.getMano());
+        partida.reorganizarManoJugador(jugador);
+        jugador.setRobo(null);
+        btnRetroalimentacion.setEnabled(true);
+        bot.setRobo(robo.robarCarta());
+    }
+
+    public void onClickBtnMano2(View view) {
+        // Actualizamos las imagenes al jugar la carta
+        imageViewDescarte.setImageResource(getResources().getIdentifier(jugador.getRobo().getRutaImagen(), "drawable", getPackageName()));
+        btnMano2.setImageDrawable(null);
+        btnMano1.setEnabled(false);
+        btnMano2.setEnabled(false);
+
+        // FUNCIONALIDAD DE LA CARTA
+        resolverJugador(jugador.getRobo());
+        jugador.setRobo(null);
+        btnRetroalimentacion.setEnabled(true);
+        bot.setRobo(robo.robarCarta());
     }
     public void jugarBot() {
 
@@ -326,7 +402,7 @@ public class MainActivity2 extends AppCompatActivity {
                     lblRetroBot.setText("El Bot se protege con una doncella");
                     // System.out.println("BOT JUEGA DONCELLA");
                     break;
-                case "Principe":// 5
+               /* case "Principe":// 5
                     // si bajas principe el jugador contrario a que juega pone su carta de mano en
                     // descartes y roba una carta del mazo
                     if (!partida.hayDoncellaDescartes(descarte)) {
@@ -365,7 +441,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                     }
                     // System.out.println("BOT JUEGA PRINCIPE");
-                    break;
+                    break;*/
                 case "Rey":// 7
                     // si bajas el rey intercambias la carta qeu te queda en mano con la carta de
                     // mano del bot
@@ -406,6 +482,201 @@ public class MainActivity2 extends AppCompatActivity {
 
     }
 
+    // resolvemos la jugadora del jugador
+    public void resolverJugador(Carta carta) {
+        // comportamiento provocado cuando el jugador baja una carta de la mano a
+        // descarte
 
+        try {
 
+            switch (carta.getTipoCarta()) {
+
+                case "Guardia":// 1
+                    // si bajas el guardian puedes adivinar la carta del contrincante, si se adivina
+                    // ganas
+                    // muestras panel de adivinar
+                    // pulsan boton aceotar, recoges la info del combobox
+                    // comparas la info del combo con la mano del contrario
+
+                    // Comprobamos si hay doncella activa
+                    if (!partida.hayDoncellaDescartes(descarte)) {
+                        Intent intent = new Intent(MainActivity2.this, SeleccionCarta.class);
+                        startActivity(intent);
+                        finish();
+                        btnRetroalimentacion.setEnabled(false);
+                    } else {
+                        lblRetroBot.setText("El bot esta protegido");
+                    }
+
+                    // System.out.println("JUGADOR JUEGA GUARDIA");
+
+                    break;
+                case "Sacerdote":// 2
+                    // al bajar el sacerdote miras la carta del jugador contrario
+                    // marcar la carta del contrario
+                    if (!partida.hayDoncellaDescartes(descarte)) {
+                        lblCartaBot.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(bot.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+                        lblRetroBot.setText("El bot tiene " + bot.getMano().getTipoCarta());
+                    } else {
+                        lblRetroBot.setText("El bot esta protegido");
+                    }
+
+                    // System.out.println("JUGADOR JUEGA SACERDOTE");
+                    break;
+                case "Baron":// 3
+                    // al bajar el baron los jugadores muestran las cartas y el que tenga el numero
+                    // mas alto gana
+                    // comparar el numero de la carta de la mano del bot con el numero de la carta
+                    // de tu mano
+                    if (!partida.hayDoncellaDescartes(descarte)) {
+                        lblCartaBot.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(bot.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+                        partida.reorganizarManoJugador(jugador);
+                        if (jugador.getMano().getNumCarta() > bot.getMano().getNumCarta()) {
+                            bot.setPerdedor(true);
+                            lblRetroBot.setText("Tu carta es más alta");
+                            // System.out.println("Ha ganado el jugador");
+                        } else if (bot.getMano().getNumCarta() > jugador.getMano().getNumCarta()) {
+                            jugador.setPerdedor(true);
+                            lblRetroBot.setText("La carta del bot es más alta");
+                            // System.out.println("Ha ganado el bot");
+                        } else {
+                            lblRetroBot.setText("Empate. Continua la partida");// Si es empate no pasa nada
+                        }
+                    } else {
+                        lblRetroBot.setText("El bot esta protegido");
+                    }
+                    // System.out.println("JUGADOR JUEGA BARON");
+                    break;
+                case "Doncella":// 4
+                    lblRetroBot.setText("Te proteges con una doncella");
+                    break;
+                /*case "Principe":// 5
+                    // si bajas principe el jugador contrario a que juega pone su carta de mano en
+                    // descartes y roba una carta del mazo
+                    if (!partida.hayDoncellaDescartes(descarte)) {
+                        //Intent intent = new Intent(MainActivity2.this, OpcionPrincipe.class);
+                       // startActivity(intent);
+                       // finish();
+                        btnRetroalimentacion.setEnabled(false);
+                    } else {
+                        lblRetroBot.setText("Descartas tu carta");
+                        if (jugador.getMano().getTipoCarta().equals("Princesa")) {
+                            descarte.getCartas().add(jugador.getMano());
+                            jugador.setPerdedor(true);
+                            partida.setEsFin(true);
+                        }
+                        jugador.setMano(null);
+                        if (!robo.finMazoRobo()) {
+                            jugador.setMano(robo.robarCarta());
+                            btnMano1.setImageResource(getResources().getIdentifier(jugador.getRobo().getRutaImagen(), "drawable", getPackageName()));
+                        } else {// COMPROBAR QUIEN TIENE LA CARTA MAS ALTA
+                            partida.setEsFin(true);
+                        }
+
+                    }
+                    // System.out.println("JUGADOR JUEGA PRINCIPE");
+                    break;*/
+                case "Rey"://
+                    // si bajas el rey intercambias la carta qeu te queda en mano con la carta de
+                    // mano del bot
+
+                    if (!partida.hayDoncellaDescartes(descarte)) {
+                        Carta cartaAux = new Carta();
+                        cartaAux = jugador.getMano();
+                        jugador.setMano(bot.getMano());
+                        jugador.getMano().setEsMarcada100(true);
+                        btnMano1.setImageResource(getResources().getIdentifier(jugador.getRobo().getRutaImagen(), "drawable", getPackageName()));
+
+                        bot.setMano(cartaAux);
+
+                        lblRetroBot.setText("Intercambías las cartas");
+                    } else {
+                        lblRetroBot.setText("El bot esta protegido");
+                    }
+                    // System.out.println("JUGADOR JUEGA REY");
+                    break;
+                case "Condesa"://// 8
+                    lblRetroBot.setText("Juegas a la Condesa");
+                    break;
+                case "Princesa":// 9
+                    // si bajas al princesa pierdes
+                    jugador.setPerdedor(true);
+                    partida.setEsFin(true);
+                    lblRetroBot.setText("Juegas a la Princesa. Has perdido");
+                    break;
+                // condesa no tiene comportamiento
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        // annadimos la carta al descarte
+        descarte.getCartas().add(carta);
+        imageViewDescarte.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(bot.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+
+    }
+
+    public void playLocal(int soundResourceId) {
+        if (media == null) {
+            media = MediaPlayer.create(this, soundResourceId);
+        }
+        if (!media.isPlaying()) {
+            media.start();
+        }
+    }
+
+    public void resolverGanador() {
+
+        try {
+            if (robo.finMazoRobo()) {
+                // si se llega a final del mazo de robo se comparan las cartas en mano y quien
+                // tenga la carta mas alta gana
+                //this.vista.panelPartida.setVisible(false);
+                //this.vista.panelGanador.setVisible(true);
+
+                if (jugador.getMano().getNumCarta() < bot.getMano().getNumCarta()) {
+                    jugador.setPerdedor(true);
+                } else if (jugador.getMano().getNumCarta() < bot.getMano().getNumCarta()) {
+                    bot.setPerdedor(true);
+                } else {
+                    //lblGanador.setText("Empate");
+                    Toast.makeText(getApplicationContext(), "Empate", Toast.LENGTH_SHORT).show();
+
+                }
+            } else if (jugador.isPerdedor()) {
+                //this.vista.panelPartida.setVisible(false);
+                //this.vista.panelGanador.setVisible(true);
+                //lblGanador.setText("El Bot ha ganado");
+                Toast.makeText(getApplicationContext(), "El Bot ha ganado", Toast.LENGTH_SHORT).show();
+
+                // SONIDO
+                playLocal(R.raw.perder);
+                //Clip sonido = AudioSystem.getClip();
+                //sonido.open(AudioSystem.getAudioInputStream(new File("resources/sonidos/perder.wav")));
+
+                //sonido.start();
+            } else if (bot.isPerdedor()) {
+                //this.vista.panelPartida.setVisible(false);
+                //this.vista.panelGanador.setVisible(true);
+                //lblGanador.setText("Has ganado la partida");
+                Toast.makeText(getApplicationContext(), "Has ganado la partida", Toast.LENGTH_SHORT).show();
+
+                // SONIDO
+                playLocal(R.raw.ganar);
+                //Clip sonido = AudioSystem.getClip();
+                //sonido.open(AudioSystem.getAudioInputStream(new File("resources/sonidos/ganar.wav")));
+                //sonido.start();
+            } else { // empate sonido
+                playLocal(R.raw.ganar);
+                //Clip sonido = AudioSystem.getClip();
+                //sonido.open(AudioSystem.getAudioInputStream(new File("resources/sonidos/ganar.wav")));
+                //sonido.start();
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+    }
 }
