@@ -40,6 +40,20 @@
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/baron" />
+
+            <Button
+                android:id="@+id/btnAbrirPopUpTabla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:backgroundTint="#00E3D7D7"
+                android:fontFamily="@font/charmonman_bold"
+                android:onClick="onClickAbrirPopUpTabla"
+                android:text="Ayuda"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+
         </LinearLayout>
 
         <LinearLayout

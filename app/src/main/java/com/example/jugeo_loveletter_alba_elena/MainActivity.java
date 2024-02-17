@@ -85,19 +85,16 @@ public class MainActivity extends AppCompatActivity {
         Intent tomarFoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         launcher.launch(tomarFoto);
     }
-   /* public void siguiente(View view) {
-        Intent intent = new Intent(this,MainActivity2.class);
-        startActivity(intent);
-    }*/
+
 
     public void aceptarInicio(View view) {
 
             try {
-                Log.d("MiApp", "Iniciando MainActivity2");  // Agrega esto
+                Log.d("MiApp", "Iniciando MainActivity2");
                 Intent intent = new Intent(this, MainActivity2.class);
                 startActivity(intent);
             } catch (Exception e) {
-                Log.e("MiApp", "Error en aceptarInicio", e);  // Agrega esto
+                Log.e("MiApp", "Error en aceptarInicio", e);
                 e.printStackTrace();
             }
         }
