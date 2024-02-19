@@ -39,7 +39,7 @@
                 android:layout_height="166dp"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/baron" />
+                app:srcCompat="@drawable/trasera" />
 
             <Button
                 android:id="@+id/btnAbrirPopUpTabla"

@@ -59,7 +59,7 @@ public class MainActivity2 extends AppCompatActivity {
         imageViewDescarte= findViewById(R.id.imageViewDescarte);
         btnRetroalimentacion = findViewById(R.id.btnRetroalimentacion);
 
-        lblCartaBot=findViewById(R.id.lblCartaBot);
+       // lblCartaBot=findViewById(R.id.lblCartaBot);
 
         Button btnAbrirPopUpTabla = findViewById(R.id.btnAbrirPopUpTabla);
 
@@ -124,7 +124,7 @@ public class MainActivity2 extends AppCompatActivity {
         // empezamos la partida
         partida.empezarPartida(jugador, bot, robo);
 
-       /
+
         btnMano1.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(jugador.getMano().getRutaImagen(), "drawable", getPackageName()), null));
 
         // comprobamos quien empieza y fijamos el primer robo del jugador
@@ -409,7 +409,7 @@ public class MainActivity2 extends AppCompatActivity {
                     // al bajar el sacerdote miras la carta del jugador contrario
                     // marcar la carta del contrario
                     if (!partida.hayDoncellaDescartes(descarte)) {
-                        lblCartaBot.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(bot.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+                        //lblCartaBot.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(bot.getMano().getRutaImagen(), "drawable", getPackageName()), null));
                         lblRetroBot.setText("El bot tiene " + bot.getMano().getTipoCarta());
                     } else {
                         lblRetroBot.setText("El bot esta protegido");
@@ -423,7 +423,7 @@ public class MainActivity2 extends AppCompatActivity {
                     // comparar el numero de la carta de la mano del bot con el numero de la carta
                     // de tu mano
                     if (!partida.hayDoncellaDescartes(descarte)) {
-                        lblCartaBot.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(bot.getMano().getRutaImagen(), "drawable", getPackageName()), null));
+                        //lblCartaBot.setImageDrawable(ResourcesCompat.getDrawable(getResources(), getResources().getIdentifier(bot.getMano().getRutaImagen(), "drawable", getPackageName()), null));
                         partida.reorganizarManoJugador(jugador);
                         if (jugador.getMano().getNumCarta() > bot.getMano().getNumCarta()) {
                             bot.setPerdedor(true);
